@@ -28,6 +28,18 @@
 
 6. openCV 오픈소스 조사(손 검출 및 인식)
 
+  https://blog.naver.com/pckbj123/100203324561
+  1. 피부색(Skin Color)를 이용한 손 후보영역(mask) 검출
+  2. 손바닥 중심점 검출
+  3. 손가락 개수 세기
+  4. ConvexHull, ConvexityDefect를 이용한 손 끝점 찾기
+  5. 여러 손 검출
+
+  https://www.youtube.com/watch?v=KtfhmpNvY7Y
+  http://aisolab.co.kr/bbs/board.php?bo_table=7003&wr_id=28
+  https://github.com/kairess/gesture-recognition - 손 제스처 인식 딥러닝 
+  
+  딥러닝까지? 
   
 가평군이 민원인과 주민들에게 부동산과 관련된 다양한 정보를 편리하고 빠르게 제공 하기위해 키오스크시스템을 도입, 다음달 1일부터 본격 운영한다고 밝혔다.
 
@@ -44,3 +56,7 @@
 군 관계자는 ″키오스크 구축으로 민원실을 방문한 고객들이 토지, 관광, 홍보 영상 등 다양한 정보를 실시간으로 제공 받게 된다″며 ″주민의 시간적, 경제적 부담 해소는 물론 만족과 감동을 주는 민원행정을 실현해 나가는데 노력을 아끼지 않겠다″고 말했다.
 
 박용준 기자 (http://blog.daum.net/pyjwns1243/283) https://gg.gg.go.kr/unmanned-office-install01#con1
+
+
+참고 논문 
+https://koreascience.kr/article/JAKO201030853097698.pdf
