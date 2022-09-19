@@ -1,3 +1,4 @@
+# 출처 : https://makernambo.com/154
 # mediapipe 모듈을 import하고 약식으로 사용할 명칭을 지정한다.
 # mediapipe.solutions.hands 모듈이 손동작인식을 위한 모듈이다. 
 import cv2
