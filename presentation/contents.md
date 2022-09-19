@@ -74,5 +74,24 @@ DeadLine : 12.14
 
 입력 : 손 제스처가 담긴 영상물   
 출력 : 해당 제스처에 맞는 동작
+
+> 데모 영상
 #### [성능 평가]
-> 정확도와 소요 시간
+> 정확도
+
+> 소요 시간
+
+## Part 6. 결론
+#### [기대 효과]
+#### [발전 가능성]
+
+## Part 7. 참고문헌
+> 논문
+
+[Design of OpenCV based Finger Recognition System using binary processing and histogram graph](http://www.koreascience.or.kr/article/JAKO201608450941178.pdf)   
+[사용자 손 제스처 인식 기반 입체 영상 제어 시스템 설계 및 구현](https://koreascience.kr/article/JAKO202210858157166.pdf)   
+[웹캠을 이용한 동적 제스쳐 인식 기반의 감성 메신저 구현 및 성능분석](https://koreascience.kr/article/JAKO201030853097698.pdf)   
+> 오픈소스
+
+[Rock Paper Scissors Machine](https://github.com/kairess/Rock-Paper-Scissors-Machine)   
+[Hand Gesture Recognition](https://github.com/kairess/gesture-recognition)
