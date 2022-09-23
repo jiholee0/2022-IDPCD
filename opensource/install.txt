@@ -1,0 +1,11 @@
+1) 아나콘다에서 conda 명령어로 설치하기
+
+> conda install -c menpo opencv
+
+2) 터미널에서 pip로 설치하기
+
+> pip install opencv-python dlib
+
+3) 아나콘다 네비게이터에서 설치하기
+
+> Environments - opencv 검색 - install
