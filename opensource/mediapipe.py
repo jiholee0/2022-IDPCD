@@ -1,14 +1,14 @@
-# 출처 : https://makernambo.com/154
+# 출처 : https://makernambo.com/154 https://blog.naver.com/PostView.naver?blogId=skyjjw79&logNo=222327014865&parentCategoryNo=54&categoryNo=&viewDate=&isShowPopularPosts=false&from=postView
 # mediapipe 모듈을 import하고 약식으로 사용할 명칭을 지정한다.
 # mediapipe.solutions.hands 모듈이 손동작인식을 위한 모듈이다. 
 import cv2
 import mediapipe as mp
  
-mp_drawing = mp.solutions.drawing_utils
+mp_drawing = mp.solutions.drawing_utils # 손 위에 그림을 그릴 수 있는 메소드
 mp_hands = mp.solutions.hands
  
 # OpenCV로 웹캠을 읽어 입력데이터 소스로 지정한다. 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0) # USB 캠을 활용하고 싶다면 0 대신 1
  
 # hands 손가락 인식모듈의 작동 option을 지정한다. 
 with mp_hands.Hands(
@@ -30,7 +30,7 @@ with mp_hands.Hands(
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         
         # result값이 정상인 경우에만 후속 작업 처리한다. 
-        if results.multi_hand_landmarks:
+        if results.multi_hand_landmarks: # 실제 손이 인식될 때 점(랜드마크)을 찍는다.
             # result로 반환된 landmark 데이터를 사용한다. 인식된 손가락 모양은 index값을 가지는 배열로 제공된다.
             for hand_landmarks in results.multi_hand_landmarks:
                 finger1 = int(hand_landmarks.landmark[4].x * 100 ) # 엄지손가락 끝의 X좌표를 백분율로 표시한 것.
@@ -45,7 +45,7 @@ with mp_hands.Hands(
  
                 # MediaPipe에 내장된 유틸리티 기능을 이용해서 구해진 손가락 모양을 서로 연결한 그림을 그려준다.
                 mp_drawing.draw_landmarks(
-                    image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+                    image, hand_landmarks, mp_hands.HAND_CONNECTIONS) # 연결선
  
         cv2.imshow('image', image)
         if cv2.waitKey(1) == ord('q'):
