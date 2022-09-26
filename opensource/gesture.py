@@ -18,7 +18,7 @@ mp_drawing = mp.solutions.drawing_utils # 손 위에 그림을 그릴 수 있는
 hands = mp_hands.Hands(
     max_num_hands=max_num_hands, # 인식할 손모양의 갯수, 생략하면 2가 지정된다.
     min_detection_confidence=0.5, # 성공적인 것으로 간주되는 최소 신뢰도 값. 0.0 ~1.0사이로서 기본값은 0.5이다.
-    min_tracking_confidence=0.5) as hands: # 손 랜드마크가 성공적으로 추적된 것으로 간주되는 최소 신뢰도 값. 0.0 ~1.0 사이로서 기본값은 0.5이다. 이 값을 높이면 시간이 더 소요되지만 좀 더 정확한 작동이 보장된다. 
+    min_tracking_confidence=0.5) # 손 랜드마크가 성공적으로 추적된 것으로 간주되는 최소 신뢰도 값. 0.0 ~1.0 사이로서 기본값은 0.5이다. 이 값을 높이면 시간이 더 소요되지만 좀 더 정확한 작동이 보장된다. 
  
 # 3. Gesture recognition model (모델 2 - 제스처 인식 모델)
 file = np.genfromtxt('data/gesture_train.csv', delimiter=',') # data file(손가락의 각도들과 label 값 저장 파일)
@@ -41,7 +41,7 @@ while cap.isOpened():
     result = hands.process(img) # 전처리 및 모델 추론을 함께 실행함
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR) # 이미지 출력을 위해 다시 바꿔줌
     
-     if result.multi_hand_landmarks is not None: # 만약 손을 인식했다면
+    if result.multi_hand_landmarks is not None: # 만약 손을 인식했다면
         my_result = []
         for res in result.multi_hand_landmarks: # 여러 개의 손을 인식할 수 있기 때문에 for문 사용
             joint = np.zeros((21, 3)) # joint -> 빨간점, 21개의 joint / 빨간점의 x, y, z 3개의 좌표이므로 3
