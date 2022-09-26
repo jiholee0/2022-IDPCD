@@ -5,6 +5,7 @@
 
 mediapipe wheel 파일을 https://pypi.org/project/mediapipe/#files 에서 다운받고 설치.
 
-[손 인식 코드 작성]
+[손 인식 코드 작성 & 결과]
 
-hand.py 
+hand.py
+
