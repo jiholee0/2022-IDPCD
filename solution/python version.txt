@@ -1,2 +1,0 @@
-[파이썬 버전 3.5 사용 중 -> mediapipe 설치 위해 3.7.9도 설치]
-https://kibua20.tistory.com/92
