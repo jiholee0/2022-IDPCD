@@ -1,0 +1,12 @@
+Mediapipe
+mediapipe는 주로 인체를 대상으로 하는 비전 인식 기능들을 AI 모델 개발과 학습까지 마친 상태로 제공하는 서비스
+
+|장점|
+① 다양한 언어에서 사용하기 편하게 라이브러리 형태로 모듈화되어 제공
+② 사용 방법이 다양하게 제공되어 몇 가지 간단한 단계로 mediapipe에서 제공하는 AI 기능을 활용한 응용 프로그램 개발 가능
+③ cpu로 실시간 추론을 해도 문제가 없을 정도로 가벼움
+
+|MediaPipe Hands|
+MediaPipe Hands는 정확도가 높은 손과 손가락 추적 솔루션. Machine Learning(ML)을 사용하여 프레임마다 각 손의 21개의 3D 랜드마크를 추론함. 현재의 최첨단 접근 방식들은 추론을 위해 주로 강력한 하드웨어 성능에 의존하는 반면, MediaPipe의 방법은 휴대폰에서도 실시간 성능을 달성하고 2개 이상의 손을 인식할 수 도 있음.
+
+https://velog.io/@dlth508/Toy-Project-%EA%B0%80%EC%9A%B4%EB%8D%B0-%EC%86%90%EA%B0%80%EB%9D%BD-%EB%AA%A8%EC%9E%90%EC%9D%B4%ED%81%AC-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EB%A7%8C%EB%93%A4%EA%B8%B0
