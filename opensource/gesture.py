@@ -21,9 +21,9 @@ hands = mp_hands.Hands(
     min_tracking_confidence=0.5) # 손 랜드마크가 성공적으로 추적된 것으로 간주되는 최소 신뢰도 값. 0.0 ~1.0 사이로서 기본값은 0.5이다. 이 값을 높이면 시간이 더 소요되지만 좀 더 정확한 작동이 보장된다. 
  
 # 3. Gesture recognition model (모델 2 - 제스처 인식 모델)
-file = np.genfromtxt('data/gesture_train.csv', delimiter=',') # data file(손가락의 각도들과 label 값 저장 파일)
-angle = file[:,:-1].astype(np.float32)
-label = file[:, -1].astype(np.float32)
+file = mp.genfromtxt('data/gesture_train.csv', delimiter=',') # data file(손가락의 각도들과 label 값 저장 파일)
+angle = file[:,:-1].astype(mp.float32)
+label = file[:, -1].astype(mp.float32)
 knn = cv2.ml.KNearest_create() # K-Nearest Neighbors 알고리즘(K-최근접 알고리즘)
 knn.train(angle, cv2.ml.ROW_SAMPLE, label) # 학습 시키기
 
@@ -44,7 +44,7 @@ while cap.isOpened():
     if result.multi_hand_landmarks is not None: # 만약 손을 인식했다면
         my_result = []
         for res in result.multi_hand_landmarks: # 여러 개의 손을 인식할 수 있기 때문에 for문 사용
-            joint = np.zeros((21, 3)) # joint -> 빨간점, 21개의 joint / 빨간점의 x, y, z 3개의 좌표이므로 3
+            joint = mp.zeros((21, 3)) # joint -> 빨간점, 21개의 joint / 빨간점의 x, y, z 3개의 좌표이므로 3
             for j, lm in enumerate(res.landmark):
                 joint[j] = [lm.x, lm.y, lm.z] # 각 joint 마다 landmark 저장 (landmark의 x, y, z 좌표 저장)
 
@@ -53,22 +53,22 @@ while cap.isOpened():
             v2 = joint[[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],:] # Child joint
             v = v2 - v1 # [20,3]
             # Normalize v
-            v = v / np.linalg.norm(v, axis=1)[:, np.newaxis]  # 길이로 나눠줌 (크키 1짜리 vector 나오게 됨(unit vector))
+            v = v / mp.linalg.norm(v, axis=1)[:, mp.newaxis]  # 길이로 나눠줌 (크키 1짜리 vector 나오게 됨(unit vector))
 
             # Get angle using arcos of dot product (15개의 각도 구하기)
-            angle = np.arccos(np.einsum('nt,nt->n',
+            angle = mp.arccos(mp.einsum('nt,nt->n',
                 v[[0,1,2,4,5,6,8,9,10,12,13,14,16,17,18],:], 
                 v[[1,2,3,5,6,7,9,10,11,13,14,15,17,18,19],:])) # [15,]
             
             # Convert radian to degree
-            angle = np.degrees(angle) # angle이 radian 값으로 나오기 때문에 degree 값으로 바꿔줌
+            angle = mp.degrees(angle) # angle이 radian 값으로 나오기 때문에 degree 값으로 바꿔줌
 
             # Inference gesture
-            data = np.array([angle], dtype=np.float32)
+            data = mp.array([angle], dtype=mp.float32)
             ret, results, neighbours, dist = knn.findNearest(data, 3)
             idx = int(results[0][0])
 
-            #---------------------------------------------------------------------------------
+            #----------------------------------------------------------------------`22  `-----------
             # Draw gesture result
             if idx in my_gesture.keys():
                 org = (int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0]))
@@ -86,21 +86,21 @@ while cap.isOpened():
                 winner = None
                 text = ''
 
-                if rps_result[0]['rps']=='rock':
-                    if rps_result[1]['rps']=='rock'     : text = 'Tie'
-                    elif rps_result[1]['rps']=='paper'  : text = 'Paper wins'  ; winner = 1
-                    elif rps_result[1]['rps']=='scissors': text = 'Rock wins'   ; winner = 0
-                elif rps_result[0]['rps']=='paper':
-                    if rps_result[1]['rps']=='rock'     : text = 'Paper wins'  ; winner = 0
-                    elif rps_result[1]['rps']=='paper'  : text = 'Tie'
-                    elif rps_result[1]['rps']=='scissors': text = 'Scissors wins'; winner = 1
-                elif rps_result[0]['rps']=='scissors':
-                    if rps_result[1]['rps']=='rock'     : text = 'Rock wins'   ; winner = 1
-                    elif rps_result[1]['rps']=='paper'  : text = 'Scissors wins'; winner = 0
-                    elif rps_result[1]['rps']=='scissors': text = 'Tie'
+                if my_result[0]['rps']=='rock':
+                    if my_result[1]['rps']=='rock'     : text = 'Tie'
+                    elif my_result[1]['rps']=='paper'  : text = 'Paper wins'  ; winner = 1
+                    elif my_result[1]['rps']=='scissors': text = 'Rock wins'   ; winner = 0
+                elif my_result[0]['rps']=='paper':
+                    if my_result[1]['rps']=='rock'     : text = 'Paper wins'  ; winner = 0
+                    elif my_result[1]['rps']=='paper'  : text = 'Tie'
+                    elif my_result[1]['rps']=='scissors': text = 'Scissors wins'; winner = 1
+                elif my_result[0]['rps']=='scissors':
+                    if my_result[1]['rps']=='rock'     : text = 'Rock wins'   ; winner = 1
+                    elif my_result[1]['rps']=='paper'  : text = 'Scissors wins'; winner = 0
+                    elif my_result[1]['rps']=='scissors': text = 'Tie'
 
                 if winner is not None:
-                    cv2.putText(img, text='Winner', org=(rps_result[winner]['org'][0], rps_result[winner]['org'][1] + 70), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 255, 0), thickness=3)
+                    cv2.putText(img, text='Winner', org=(my_result[winner]['org'][0], my_result[winner]['org'][1] + 70), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 255, 0), thickness=3)
                 cv2.putText(img, text=text, org=(int(img.shape[1] / 2), 100), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=(0, 0, 255), thickness=3)
 
     cv2.imshow('Game', img)
