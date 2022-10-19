@@ -69,7 +69,7 @@ while cap.isOpened():
             ret, results, neighbours, dist = knn.findNearest(data, 3)
             idx = int(results[0][0])
 
-            #----------------------------------------------------------------------`22  `-----------
+            #---------------------------------------------------------------------------------
             # Draw gesture result
             if idx in my_gesture.keys():
                 org = (int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0]))

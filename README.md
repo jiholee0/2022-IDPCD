@@ -107,7 +107,7 @@ DeadLine : 12.14
 #### [실험]
 노인을 위해 어떤 편의성을 제공해줄 수 있는지 고민해보고 그 편의성을 충족시키기 위해 무엇이 필요한지
 #### [성능 평가]
-
+정확도, 소요시간
 ### Part 6. 결론
 #### [기대 효과]
 #### [발전 가능성]
@@ -130,6 +130,8 @@ http://lps3.kiss.kstudy.com.sproxy.dongguk.edu/search/sch-result.asp
 [자연스런 손동작 인터렉션과 후마네트 운동을 접목한 노인성뇌질환 예방 기능성 게임기술](https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002010995) - 손동작 선정 근거, 성능평가 참고
 
 [노인 연령대별 손 기능 상관관계 연구](http://hanyang.dcollection.net/public_resource/pdf/200000436025_20221014141902.pdf)
+
+[제스처인식 프레젠테이션](https://koreascience.kr/article/JAKO201126235931025.pdf)
 
 > 오픈소스
 
