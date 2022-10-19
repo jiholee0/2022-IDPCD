@@ -59,7 +59,7 @@ while cap.isOpened():
             v = v / np.linalg.norm(v, axis=1)[:, np.newaxis] # 길이로 나눠줌 (크키 1짜리 vector 나오게 됨(unit vector))
 
             # Get angle using arcos of dot product (15개의 각도 구하기)
-            angle = np.arccos(np.einsum('nt,nt->n',
+            angle = np.arccos(np.einsum('   nt,nt->n',
                                         v[[0, 1, 2, 4, 5, 6, 8, 9, 10, 12, 13, 14, 16, 17, 18], :],
                                         v[[1, 2, 3, 5, 6, 7, 9, 10, 11, 13, 14, 15, 17, 18, 19], :])) # [15,]
 

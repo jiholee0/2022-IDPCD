@@ -11,7 +11,7 @@ mp_hands = mp.solutions.hands
 cap = cv2.VideoCapture(0) # USB 캠을 활용하고 싶다면 0 대신 1
  
 # hands 손가락 인식모듈의 작동 option을 지정한다. 
-with mp_hands.Hands(
+with mp_hands.Hands(    
     max_num_hands=1, # 인식할 손모양의 갯수, 생략하면 2가 지정된다.
     min_detection_confidence=0.5, # 성공적인 것으로 간주되는 최소 신뢰도 값. 0.0 ~1.0사이로서 기본값은 0.5이다.
     min_tracking_confidence=0.5) as hands: # 손 랜드마크가 성공적으로 추적된 것으로 간주되는 최소 신뢰도 값. 0.0 ~1.0 사이로서 기본값은 0.5이다. 이 값을 높이면 시간이 더 소요되지만 좀 더 정확한 작동이 보장된다. 
