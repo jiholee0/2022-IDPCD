@@ -137,3 +137,119 @@ http://lps3.kiss.kstudy.com.sproxy.dongguk.edu/search/sch-result.asp
 
 [Rock Paper Scissors Machine](https://github.com/kairess/Rock-Paper-Scissors-Machine)
 [Hand Gesture Recognition](https://github.com/kairess/gesture-recognition)
+
+
+> 피드백
+1. 키오스크 ui가 좌우로 쓸기의 경우 직관적이지 않음. -> 제스처 변경 또는 ui에 표시해주기
+2. 숫자 3과 아래로 내리는(하, bad) 제스처는 노인이 하기에 적절하지 않아 보임.
+    -> 숫자 1,2,3 대신 숫자 0,1,2 / good, bad 대신
+3. 숫자 제스처가 다양한데 이를 다 허용할지, 특정 제스처만 되게 할지
+    -> 모두 다 되게하고 펴진 손가락 개수를 인식하자. 왜?
+4. 키오스크에 카메라 위치에 따른 실험(제스처 인식  시 손 각도에 따라 인식률 실험)
+5. 거리에 따라(노인의 경우 키오스크에서 매우 가까이 있을 것으로 보이므로) 인식률 실험 - 적어도 일정 거리 이상이 되어야 한다면 키오스크 앞에 일정 거리 라인을 세운다던지 해야 함.
+
+
+1. SQL 집계함수(COUNT, SUM, AVG, MAX, MIN)
+
+- 집계함수란 ? 이미 기록된 정보(데이터)를 모아 계산하는 함수
+
+> * COUNT(COLUMN NAME)
+> 데이터의 개수(ROW)를 세는 함수.
+```mysql
+SELECT COUNT(*) FROM EMP;
+-----
+12
+
+SELECT COUNT(ENAME) FROM EMP;
+-----
+12
+```
+> * COUNT(DISTINCT COLUMN NAME)
+> 중복된 데이터를 추릴 수 있는 함수.
+```mysql
+SELECT COUNT(DISTINCT DEPTNO) FROM EMP;
+-----
+3
+```
+> 여기서 중요한 점. COUNT 함수는 NULL 값을 세지 않는다. NULL 값 처리를 위해서는 다음과 같이 하면 된다.
+```mysql
+SELECT COUNT(COMM) FROM EMP;
+-----
+4
+
+SELECT COUNT(NVL(COMM,0)) FROM EMP;
+-----
+12
+```
+> * 여러 개 COUNT
+```mysql
+SELECT COUNT(ENAME), COUNT(COMM) FROM EMP;
+-----
+12 | 4
+```
+
+> * SUM(COLUMN NAME)
+```mysql
+SELECT SUM(SAL) FROM EMP;
+-----
+24925
+```
+
+> * AVG(COLUMN NAME)
+> 수치 데이터의 평균을 출력하는 함수. NULL값 처리 X
+```mysql
+SELECT AVG(COMM) FROM EMP;
+-----
+550
+
+SELECT AVG(NVL(COMM,0)) FROM EMP;
+-----
+183.333333
+```
+> * MAX(COLUMN NAME), MIN(COLUMN NAME)
+> 수치 데이터의 최대, 최소를 출력하는 함수
+```mysql
+SELECT MAX(SAL) FROM EMP;
+-----
+5000
+
+SELECT MIN(SAL) FROM EMP;
+-----
+800
+```
+
+> * ORDER BY
+> 정렬하는 함수.
+```mysql
+SELECT * FROM STUDENT ORDER BY GRADE;
+-----
+GRADE에 따라 정렬(오름차순)
+
+SELECT * FROM STUDENT ORDER BY GRADE, BIRTHDAY DESC;
+-----
+GRADE(오름차순), 같은 GRADE 내에서는 BIRTHDAY(내림차순)에 따라 정렬
+```
+> * WHERE절
+> 테이블에 저장되어 있는 데이터 중 작성된 조건에 따라 특정한 데이터를 필터링할 때 사용.
+```mysql
+SELECT * FROM EMPLOYEES E WHERE E.SALARY >= 9000;
+
+SELECT * FROM EMPLOYEES E WHERE E.SALARY >= 9000 AND E.SALARY <= 10000;
+SELECT * FROM EMPLOYEES E WHERE E.SALARY BETWEEN 9000 AND 10000;
+SELECT * FROM EMPLOYEES E WHERE E.COMMISION_PCT IS NULL;
+SELECT * FROM EMPLOYEES E WHERE E.SALARY IN 9000, 10000, 11000;
+
+SELECT * FROM EMPLOYEES E WHERE E.FIRST_NAME LIKE 'A%';
+```
+> * JOIN
+> (INNER) JOIN: 두 테이블에서 일치하는 값을 가진 레코드를 반환합니다.
+> LEFT (OUTER) JOIN: 왼쪽 테이블의 모든 레코드를 반환하고 오른쪽 테이블의 일치하는 레코드를 반환합니다.
+> RIGHT (OUTER) JOIN: 오른쪽 테이블의 모든 레코드를 반환하고 왼쪽 테이블의 일치하는 레코드를 반환합니다.
+> FULL (OUTER) JOIN: 왼쪽 또는 오른쪽 테이블에 일치하는 항목이 있는 경우 모든 레코드를 반환합니다.
+
+```mysql
+SELECT * FROM Orders
+ LEFT JOIN Customers
+ ON Orders.CustomerID = Customers.CustomerID;
+```
+⚠️ 주의 : MySQL에서는 FULL OUTER JOIN을 제공하지 않음.
