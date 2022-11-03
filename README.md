@@ -137,3 +137,13 @@ http://lps3.kiss.kstudy.com.sproxy.dongguk.edu/search/sch-result.asp
 
 [Rock Paper Scissors Machine](https://github.com/kairess/Rock-Paper-Scissors-Machine)
 [Hand Gesture Recognition](https://github.com/kairess/gesture-recognition)
+
+> 피드백
+1. 키오스크 ui가 좌우로 쓸기의 경우 직관적이지 않음. -> 제스처 변경 또는 ui에 표시해주기
+2. 숫자 3과 아래로 내리는(하, bad) 제스처는 노인이 하기에 적절하지 않아 보임. 
+    -> 숫자 1,2,3 대신 숫자 0,1,2 / good, bad 대신 
+3. 숫자 제스처가 다양한데 이를 다 허용할지, 특정 제스처만 되게 할지
+    -> 모두 다 되게하고 펴진 손가락 개수를 인식하자. 왜? 
+4. 키오스크에 카메라 위치에 따른 실험(제스처 인식  시 손 각도에 따라 인식률 실험)
+5. 거리에 따라(노인의 경우 키오스크에서 매우 가까이 있을 것으로 보이므로) 인식률 실험 - 적어도 일정 거리 이상이 되어야 한다면 키오스크 앞에 일정 거리 라인을 세운다던지 해야 함.
+
