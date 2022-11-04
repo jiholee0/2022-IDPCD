@@ -68,7 +68,7 @@ while cap.isOpened():
 
             # Inference gesture
             data = np.array([angle], dtype=np.float32)
-            # print(data)
+            # print(data)y
             # data = np.append(data, 11)
             ret, results, neighbours, dist = knn.findNearest(data, 3) # k가 3일 때의 값 구함
             idx = int(results[0][0])
