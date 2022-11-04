@@ -11,8 +11,8 @@ gesture = {		# fy(가운데 손가락) 클래스 정의 -> 11
 }
 
 # MediaPipe hands model (first model: 손 감지 모델)
-# 영상에서 손가락 뼈 마디 부분(연두색 선, 빨간점)을 그릴 수 있도록 도와주는 것
 mp_hands = mp.solutions.hands
+# 영상에서 손가락 뼈 마디 부분(연두색 선, 빨간점)을 그릴 수 있도록 도와주는 것
 mp_drawing = mp.solutions.drawing_utils
 # 손가락 detection 모듈 초기화
 hands = mp_hands.Hands(
