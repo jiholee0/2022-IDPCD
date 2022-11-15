@@ -6,18 +6,26 @@
     body {
         background-color: beige;
     }
-    h1 {
+    div {
+        width : 30%;
+        display : flex;
         margin : 0 auto;
-        text-align: center;
     }
     img {
-        width : 300px;
-        display : block;
-        margin : 0 auto;
+        width : 100%;
         box-shadow: 5px 5px gray;
     }
 </style>
+<script type="text/javascript">
+    var imgNum = "001";
+</script>
 <body>
-    <br><h1>SLOW KIOSK ZONE</h1><br>
-    <img src="./image/001.png">
+    <br><br>
+    <div>
+        <img id = "screen" src="">
+        <script type="text/javascript">
+            document.getElementById("screen").src = "./image/" + imgNum + ".png";
+        </script>
+    </div>
+
 </body>

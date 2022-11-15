@@ -2,6 +2,7 @@ import cv2 # 웹캠 제어 및 ML 사용
 import mediapipe as mp # 손 인식을 할 것
 import numpy as np
 
+result='hello'
 max_num_hands = 1 # 손은 최대 1개만 인식
 gesture = { # **11가지나 되는 제스처 라벨, 각 라벨의 제스처 데이터는 이미 수집됨 (제스처 데이터 == 손가락 관절의 각도, 각각의 라벨)**
     0:'fist', 1:'one', 2:'two', 3:'three', 4:'four', 5:'five',
@@ -70,6 +71,9 @@ while cap.isOpened(): # 웹캠에서 한 프레임씩 이미지를 읽어옴
             # Draw gesture result
             if idx in kiosk_gesture.keys():
                 cv2.putText(img, text=kiosk_gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
+
+            # save gesture result
+            result = kiosk_gesture[idx].upper()
 
             # Other gestures 모든 제스처를 표시한다면
             # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
