@@ -5,7 +5,7 @@ import numpy as np
 max_num_hands = 1 # 인식할 수 있는 손 개수
 gesture = {
     0:'fist', 1:'one', 2:'two', 3:'three', 4:'four', 5:'five',
-    6:'six', 7:'rock', 8:'spiderman', 9:'yeah', 10:'ok', 11:'fy'
+    6:'six', 7:'rock', 8:'spiderman', 9:'scissors', 10:'ok', 11:'fy'
 } # 12가지의 제스처, 제스처 데이터는 손가락 관절의 각도와 각각의 라벨을 뜻한다.
 
 # MediaPipe hands model
@@ -58,18 +58,18 @@ while cap.isOpened():
 
             # Get angle using arcos of dot product
             angle = np.arccos(np.einsum('nt,nt->n',
-                v[[0,1,2,4,5,6,8,9,10,12,13,14,16,17,18],:], 
+                v[[0,1,2,4,5,6,8,9,10,12,13,14,16,17,18],:],
                 v[[1,2,3,5,6,7,9,10,11,13,14,15,17,18,19],:])) # [15,]
 
             angle = np.degrees(angle) # Convert radian to degree
 
             data = np.array([angle], dtype=np.float32)
-            
-            data = np.append(data, 11) # 
+
+            data = np.append(data, 11) #
 
             mp_drawing.draw_landmarks(img, res, mp_hands.HAND_CONNECTIONS)
 
-    cv2.imshow('Dataset', img) 
+    cv2.imshow('Dataset', img)
     if cv2.waitKey(1) == ord('q'):
         break
 
