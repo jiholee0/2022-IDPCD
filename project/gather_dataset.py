@@ -5,7 +5,7 @@ import numpy as np
 max_num_hands = 1 # 인식할 수 있는 손 개수
 gesture = {
     0:'fist', 1:'one', 2:'two', 3:'three', 4:'four', 5:'five',
-    6:'six', 7:'rock', 8:'spiderman', 9:'scissors', 10:'ok', 11:'fy'
+    6:'six', 7:'rock', 8:'spiderman', 9:'scissors', 10:'ok'
 } # 12가지의 제스처, 제스처 데이터는 손가락 관절의 각도와 각각의 라벨을 뜻한다.
 
 # MediaPipe hands model
