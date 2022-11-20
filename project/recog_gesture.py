@@ -1,14 +1,30 @@
 import cv2 # 웹캠 제어 및 ML 사용
 import mediapipe as mp # 손 인식을 할 것
 import numpy as np
+import time
 
-result='result'
+# 소켓 통신
+import socket
+HOST = '127.0.0.1' # local 호스트 사용
+PORT = 10000 # 10000번 포트 사용
+# 소켓 생성
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# 접속
+client_socket.connect((HOST, PORT))
+
+# 키오스크 모니터
+def kiosk(controlMsg) :
+    if controlMsg == 'start' :
+        image = cv2.imread("./kiosk/image/001.png", cv2.IMREAD_UNCHANGED)
+        cv2.imshow("kiosk", image)
+
+# 제스처 인식
 max_num_hands = 1 # 손은 최대 1개만 인식
-gesture = { # **11가지나 되는 제스처 라벨, 각 라벨의 제스처 데이터는 이미 수집됨 (제스처 데이터 == 손가락 관절의 각도, 각각의 라벨)**
+gesture = { # **11가지나 되는 제스처 라벨, 각 라벨의 제스처 데이터는 이미 수집됨 (제스처 데이터 == 손가락 관절의  각도, 각각의 라벨)**
     0:'fist', 1:'one', 2:'two', 3:'three', 4:'four', 5:'five',
     6:'six', 7:'rock', 8:'spiderman', 9:'scissors', 10:'ok'
 }
-kiosk_gesture = {0:'zero', 1:'one', 2:'two', 10:'ok'} # 우리가 사용할 제스처 라벨만 가져옴
+kiosk_gesture = {0:'zero', 1:'one', 2:'two', 5:'five', 10:'ok'} # 우리가 사용할 제스처 라벨만 가져옴
 
 # MediaPipe hands model
 mp_hands = mp.solutions.hands # 웹캠 영상에서 손가락 마디와 포인트를 그릴 수 있게 도와주는 유틸리티1
@@ -21,14 +37,14 @@ hands = mp_hands.Hands(
     min_tracking_confidence=0.5)
 
 # 제스처 인식 모델
-file = np.genfromtxt('data/gesture_train.csv', delimiter=',') # **각 제스처들의 라벨과 각도가 저장되어 있음, 정확도를 높이고 싶으면 데이터를 추가해보자!**
+file = np.genfromtxt('C:/Users/LJH/Desktop/2022-IDPCD/project/data/gesture_train.csv', delimiter=',') # **각 제스처들의 라벨과 각도가 저장되어 있음, 정확도를 높이고 싶으면 데이터를 추가해보자!**
 angle = file[:,:-1].astype(np.float32) # 각도
 label = file[:, -1].astype(np.float32) # 라벨
 knn = cv2.ml.KNearest_create() # knn(k-최근접 알고리즘)으로
 knn.train(angle, cv2.ml.ROW_SAMPLE, label) # 학습!
 
 cap = cv2.VideoCapture(0)
-
+isEnd = False
 while cap.isOpened(): # 웹캠에서 한 프레임씩 이미지를 읽어옴
     ret, img = cap.read()
     if not ret:
@@ -38,7 +54,7 @@ while cap.isOpened(): # 웹캠에서 한 프레임씩 이미지를 읽어옴
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     result = hands.process(img)
-
+ 
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
     # 각도를 인식하고 제스처를 인식하는 부분
@@ -71,10 +87,10 @@ while cap.isOpened(): # 웹캠에서 한 프레임씩 이미지를 읽어옴
             # Draw gesture result
             if idx in kiosk_gesture.keys():
                 cv2.putText(img, text=kiosk_gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
-
-            # save gesture result
-            result = kiosk_gesture[idx].upper()
-
+                result = kiosk_gesture[idx].upper()
+                client_socket.send(result.encode('utf-8'))
+                time.sleep(5)
+            
             # Other gestures 모든 제스처를 표시한다면
             # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
 
@@ -83,3 +99,5 @@ while cap.isOpened(): # 웹캠에서 한 프레임씩 이미지를 읽어옴
     cv2.imshow('Game', img)
     if cv2.waitKey(1) == ord('q'):
         break
+
+client_socket.close()

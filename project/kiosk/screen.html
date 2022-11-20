@@ -17,14 +17,17 @@
     }
 </style>
 <script type="text/javascript">
-    var imgNum = "001";
+    var imgNum = ['001', '002', '003', '004']
 </script>
 <body>
     <br><br>
     <div>
         <img id = "screen" src="">
         <script type="text/javascript">
-            document.getElementById("screen").src = "./image/" + imgNum + ".png";
+            for(var i = 0; i <=4; i++){
+                document.getElementById("screen").src = "./image/" + imgNum[0] + ".png";
+                console.log(imgNum[i]);
+            }
         </script>
     </div>
 
