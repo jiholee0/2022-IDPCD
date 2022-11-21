@@ -3,21 +3,6 @@ import mediapipe as mp # 손 인식을 할 것
 import numpy as np
 import time
 
-# 소켓 통신
-import socket
-HOST = '127.0.0.1' # local 호스트 사용
-PORT = 10000 # 10000번 포트 사용
-# 소켓 생성
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# 접속
-client_socket.connect((HOST, PORT))
-
-# 키오스크 모니터
-def kiosk(controlMsg) :
-    if controlMsg == 'start' :
-        image = cv2.imread("./kiosk/image/001.png", cv2.IMREAD_UNCHANGED)
-        cv2.imshow("kiosk", image)
-
 # 제스처 인식
 max_num_hands = 1 # 손은 최대 1개만 인식
 gesture = { # **11가지나 되는 제스처 라벨, 각 라벨의 제스처 데이터는 이미 수집됨 (제스처 데이터 == 손가락 관절의  각도, 각각의 라벨)**
@@ -54,7 +39,7 @@ while cap.isOpened(): # 웹캠에서 한 프레임씩 이미지를 읽어옴
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     result = hands.process(img)
- 
+
     img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
     # 각도를 인식하고 제스처를 인식하는 부분
@@ -88,16 +73,12 @@ while cap.isOpened(): # 웹캠에서 한 프레임씩 이미지를 읽어옴
             if idx in kiosk_gesture.keys():
                 cv2.putText(img, text=kiosk_gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
                 result = kiosk_gesture[idx].upper()
-                client_socket.send(result.encode('utf-8'))
-                time.sleep(5)
-            
+
             # Other gestures 모든 제스처를 표시한다면
             # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
 
             mp_drawing.draw_landmarks(img, res, mp_hands.HAND_CONNECTIONS) # 손에 랜드마크를 그려줌
 
-    cv2.imshow('Game', img)
+    cv2.imshow('Gesture', img)
     if cv2.waitKey(1) == ord('q'):
         break
-
-client_socket.close()
