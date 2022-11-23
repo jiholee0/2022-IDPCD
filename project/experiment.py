@@ -13,7 +13,7 @@ def compare(count) -> str :
             result = recog_gesture.recog_gesture()
             print('return value : ', result , ' ', time.time(), '\n--------------\n')
             if result == gesture : isCorrect += 1
-            if result == 'fail' : isFail += 1
+            else if result == 'fail' : isFail += 1
     return '인식률 ' + str(isCorrect / (count*5) * 100) + '% | 실패율 ' + str(isFail / (count*5) * 100) + '%'
 
 # 인식률 계산
