@@ -1,0 +1,107 @@
+--------------
+ total number :  28
+result list :  ['ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO']
+
+return value :  ZERO   1669181096.1380157
+--------------
+
+--------------
+ total number :  31
+result list :  ['ZERO', 'ZERO', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE']
+
+return value :  ONE   1669181098.057185
+--------------
+
+--------------
+ total number :  31
+result list :  ['TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO']
+
+return value :  TWO   1669181099.9778724
+--------------
+
+--------------
+ total number :  34
+result list :  ['FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE']
+
+return value :  FIVE   1669181101.9312947
+--------------
+
+--------------
+ total number :  33
+result list :  ['OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK']
+
+return value :  OK   1669181103.881547
+--------------
+
+--------------
+ total number :  31
+result list :  []
+
+return value :  fail   1669181105.8329515
+--------------
+
+--------------
+ total number :  31
+result list :  ['ZERO', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE']
+
+return value :  ONE   1669181107.7666507
+--------------
+
+--------------
+ total number :  31
+result list :  ['TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO']
+
+return value :  TWO   1669181109.720076
+--------------
+
+--------------
+ total number :  32
+result list :  ['FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE']
+
+return value :  FIVE   1669181111.6725376
+--------------
+
+--------------
+ total number :  33
+result list :  ['ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'OK', 'ZERO', 'ZERO', 'ZERO', 'ZERO']
+
+return value :  ZERO   1669181113.624058
+--------------
+
+--------------
+ total number :  33
+result list :  ['ONE', 'ZERO', 'ZERO', 'ONE', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO', 'ZERO']
+
+return value :  ZERO   1669181115.559309
+--------------
+
+--------------
+ total number :  33
+result list :  ['ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE', 'ONE']
+
+return value :  ONE   1669181117.5102098
+--------------
+
+--------------
+ total number :  32
+result list :  ['TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO', 'TWO']
+
+return value :  TWO   1669181119.412353
+--------------
+
+--------------
+ total number :  33
+result list :  ['FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE', 'FIVE']
+
+return value :  FIVE   1669181121.3644123
+--------------
+
+--------------
+ total number :  33
+result list :  ['FIVE', 'FIVE', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK', 'OK']
+
+return value :  OK   1669181123.3177676
+--------------
+
+
+ 1.1 거리 15cm 이내 :  인식률 86.66666666666667% | 실패율 6.666666666666667%
