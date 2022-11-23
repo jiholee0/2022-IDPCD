@@ -5,8 +5,8 @@
 import socket, datetime, json
 
 import sys
-sys.path.append("/test")
-import test as recog_gesture
+sys.path.append("/recog_gesture")
+import recog_gesture as recog_gesture
 
 HOST = '127.0.0.1' # local 호스트 사용
 PORT = 10000 # 10000번 포트 사용
@@ -23,7 +23,7 @@ cliData = {
 num = 0
 while True :
     # 제스처 인식 결과 가져오기
-    result = recog_gesture.result[num]
+    result = recog_gesture.recog_gesture()
     num+=1
     if result == "exit" :
         break
