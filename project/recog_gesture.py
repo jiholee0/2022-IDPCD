@@ -8,11 +8,9 @@ def recog_gesture() -> str :
     result_list = []
     # 제스처 인식
     max_num_hands = 1 # 손은 최대 1개만 인식
-    gesture = { # **11가지나 되는 제스처 라벨, 각 라벨의 제스처 데이터는 이미 수집됨 (제스처 데이터 == 손가락 관절의  각도, 각각의 라벨)**
-        0:'fist', 1:'one', 2:'two', 3:'three', 4:'four', 5:'five',
-        6:'six', 7:'rock', 8:'spiderman', 9:'scissors', 10:'ok'
+    kiosk_gesture = {
+        0:'zero', 1:'one', 2:'two', 3:'five', 4:'ok', 5:'good'
     }
-    kiosk_gesture = {0:'zero', 1:'one', 2:'two', 5:'five', 10:'ok'} # 우리가 사용할 제스처 라벨만 가져옴
 
     # MediaPipe hands model
     mp_hands = mp.solutions.hands # 웹캠 영상에서 손가락 마디와 포인트를 그릴 수 있게 도와주는 유틸리티1
@@ -25,7 +23,7 @@ def recog_gesture() -> str :
         min_tracking_confidence=0.5)
 
     # 제스처 인식 모델
-    file = np.genfromtxt('C:/Users/NICE-DNB/Desktop/2022-IDPCD/project/data/gesture_train.csv', delimiter=',') # 각 제스처들의 라벨과 각도가 저장되어 있음, 정확도를 높이고 싶으면 데이터를 추가해보자!**
+    file = np.genfromtxt('C:/Users/NICE-DNB/Desktop/2022-IDPCD/project/data/my_gesture_train.csv', delimiter=',') # 각 제스처들의 라벨과 각도가 저장되어 있음, 정확도를 높이고 싶으면 데이터를 추가해보자!**
     angle = file[:,:-1].astype(np.float32) # 각도
     label = file[:, -1].astype(np.float32) # 라벨
     knn = cv2.ml.KNearest_create() # knn(k-최근접 알고리즘)으로
@@ -79,6 +77,7 @@ def recog_gesture() -> str :
                     if idx in kiosk_gesture.keys():
                         cv2.putText(img, text=kiosk_gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
                         rst = kiosk_gesture[idx].upper()
+                        result_list.append(rst)
 
                     # Other gestures 모든 제스처를 표시한다면
                     # cv2.putText(img, text=gesture[idx].upper(), org=(int(res.landmark[0].x * img.shape[1]), int(res.landmark[0].y * img.shape[0] + 20)), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=(255, 255, 255), thickness=2)
@@ -89,8 +88,8 @@ def recog_gesture() -> str :
             cv2.imshow('gesture', resize)
             if cv2.waitKey(1) == ord('q'):
                 break
-    print('--------------\n total number : ', number)
-    print('result list : ', result_list, '\n')
+    # print('--------------\n total number : ', number)
+    # print('result list : ', result_list, '\n')
     mode = stats.mode(result_list)[0]
     if len(mode) == 0 : return 'fail'
     else : return mode[0]

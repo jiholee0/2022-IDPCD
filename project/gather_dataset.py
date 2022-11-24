@@ -2,11 +2,10 @@ import cv2
 import mediapipe as mp
 import numpy as np
 
-max_num_hands = 1 # 인식할 수 있는 손 개수
+max_num_hands = 1
 gesture = {
-    0:'zero', 1:'one', 2:'two', 3:'three', 4:'four', 5:'five',
-    6:'six', 7:'rock', 8:'spiderman', 9:'scissors', 10:'ok'
-} # 11가지의 제스처, 제스처 데이터는 손가락 관절의 각도와 각각의 라벨을 뜻한다.
+    0:'zero', 1:'one', 2:'two', 3:'five', 4:'ok', 5:'good'
+}
 
 # MediaPipe hands model
 mp_hands = mp.solutions.hands
@@ -17,10 +16,10 @@ hands = mp_hands.Hands(
     min_tracking_confidence=0.5)
 
 # Gesture recognition data
-file = np.genfromtxt('C:/Users/LJH/Desktop/2022-IDPCD/project/data/test_train.csv', delimiter=',')
+file = np.genfromtxt('C:/Users/NICE-DNB/Desktop/2022-IDPCD/project/data/my_gesture_train.csv', delimiter=',')
 print(file.shape)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 def click(event, x, y, flags, param):
     global data, file
@@ -65,14 +64,13 @@ while cap.isOpened():
 
             data = np.array([angle], dtype=np.float32)
 
-            data = np.append(data, 0) #
+            data = np.append(data, 5) #
 
             mp_drawing.draw_landmarks(img, res, mp_hands.HAND_CONNECTIONS)
 
-    cv2.imshow('Dataset', img)
+    resize = cv2.resize(img, (200, 150), interpolation=cv2.INTER_CUBIC)
+    cv2.imshow('Dataset', resize)
     if cv2.waitKey(1) == ord('q'):
         break
 
-np.savetxt('C:/Users/LJH/Desktop/2022-IDPCD/project/data/test_train.csv', file, delimiter=',')
-
-#
+np.savetxt('C:/Users/NICE-DNB/Desktop/2022-IDPCD/project/data/my_gesture_train.csv', file, delimiter=',')
