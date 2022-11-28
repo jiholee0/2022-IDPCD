@@ -20,25 +20,21 @@ cliData = {
     'curPageNum' : 1,
     'result' : ''
 }
-num = 0
-while True :
+while cliData.get('isComplete') == False :
     # 제스처 인식 결과 가져오기
     result = recog_gesture.recog_gesture()
-    num+=1
-    if result == "exit" :
-        break
 
     # 데이터 서버에 전송
     cliData.update(result=result)
     sendData = json.dumps(cliData)
     client_socket.send(bytes(sendData, 'utf-8'))
-    print('sendData : ',sendData, datetime.datetime.now())
 
     # 서버에게 데이터 받음
     data = client_socket.recv(1024)
+    print(data)
     recvData = json.loads(data)
     print('recvData : ',recvData, datetime.datetime.now())
-    cliData.update(curPageNum=recvData.get('curPageNum'))
+    cliData.update( isComplete=bool(recvData.get('isComplete')), curPageNum=int(recvData.get('curPageNum')))
 
 
 client_socket.close()

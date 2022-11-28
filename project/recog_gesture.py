@@ -33,10 +33,12 @@ def recog_gesture() -> str :
 
     if cap.isOpened():
         number = 0
-        target_tick = time.time() + 2
+        # target_tick = time.time() + 2
 
-        while time.time() < target_tick :
-            number += 1
+        # while time.time() < target_tick :
+        while True :
+            if number > 50 : break
+
             ret, img = cap.read()
             if not ret:
                 continue
@@ -48,6 +50,7 @@ def recog_gesture() -> str :
 
             # 각도를 인식하고 제스처를 인식하는 부분
             if result.multi_hand_landmarks is not None: # 만약 손을 인식하면
+                number += 1
                 for res in result.multi_hand_landmarks:
                     joint = np.zeros((21, 3)) # joint == 랜드마크에서 빨간 점, joint는 21개가 있고 x,y,z 좌표니까 21,3
                     for j, lm in enumerate(res.landmark):
